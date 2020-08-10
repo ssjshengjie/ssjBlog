@@ -90,7 +90,7 @@ module.exports = {
       // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/cli-service.md#配置代理
       proxy: {
             '/api': {
-                  target: 'http://www.shyding.xyz:3000',/* https://www.zhengbeining.com */
+                  target: 'https://www.zhengbeining.com',/*  */
                   changeOrigin: true,
                 /*   secure: false, */
                    ws: true,

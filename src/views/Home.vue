@@ -2,6 +2,7 @@
   <div class="blog">
     <!-- 头部----------------------------------------->
     <div class="blog_header" id="searchBar">
+        
       <nav class="blog_header_nav" :class="NavBlogBarFixed == true ? 'isFixed' : ''">
         <!-- 博客LOGO -->
         <div class="blog_header_nav_left">
@@ -56,7 +57,7 @@
     </div>
 
     <!-- 尾部-------------------------------------- -->
-    <div class="blog_footer"></div>
+      <Footer/>
 <!--     <div class="returnTop"> 
     </div> -->
   </div>
@@ -65,9 +66,10 @@
 <script>
 // @ is an alias to /src
 import ContentRight from "../components/ContentRight";
+import Footer from "../components/Fotter"
 export default {
   name: "Home",
-  components: { ContentRight },
+  components: { ContentRight,Footer},
   data() {
     return {
       NavBlogBarFixed: false,
@@ -111,10 +113,13 @@ a {
   /* 头部 */
   .blog_header {
     flex: 1 1 auto;
-    background: #006699;
-    height: 60px;
+   /*  background: #006699; */
+    height: 750px;
     display: flex;
     flex-flow: column;
+    background: url("../assets/image/background.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
     /* 固定头部 */
     .isFixed {
       position: fixed;
@@ -128,7 +133,7 @@ a {
       height: 60px;
       line-height: 60px;
       border-bottom: 1px solid #dcdfe6;
-      background:#a4e2c6;
+      background:rgba(255, 254, 153, 0.1);
       cursor: pointer;
       /* 导航左边 */
       .blog_header_nav_left {
@@ -193,11 +198,11 @@ a {
     }
   }
   /* 尾部 */
-  .blog_footer {
+ /*  .blog_footer {
     flex: 1 1 auto;
     background: black;
     height: 300px;
-  }
+  } */
   .returnTop {
     right: 38px;
     bottom: 20px;

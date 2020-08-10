@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-on:mousedown.left="createLoves($event)" v-on:mouseup="removeSmallHert">
+  <div id="app"><!--  v-on:mousedown.left="createLoves($event)" v-on:mouseup="removeSmallHert" -->
     <home></home>
     <mouse ref="mouse"></mouse>	
   </div>

@@ -17,6 +17,7 @@
               <div class="index-tags-item"
               >{{item.type}}</div>
             </div>
+           <!--  <div class="el-icon-date">{{item.date}}</div> -->
             <div class="bottom clearfix"></div>
           </div>
         </el-card>
@@ -31,10 +32,9 @@
         :total="count"
       ></el-pagination> -->
       <el-pagination
-        @size-change="handleSizeChange" 
         @current-change="handleCurrentChange" 
         :current-page.sync="nowpage"
-        :page-size.sync="pagesize"
+        page-size.sync="pagesize"
         layout="prev, pager, next"
         :total="count"
       ></el-pagination>
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       nowpage: 1,
-      pagesize: 9,
+      pagesizeStart: 0,
+      pagesizeEnd:9,
       currentpage:1,
       count: 1,
       list: []
@@ -74,23 +75,24 @@ export default {
         `http://47.92.39.166:3000/getArticles`
       ).then((response) => response.json())
         .then((data) => {    
-           this.list = data.data;
-           this.count =  this.list.length;  
-/*            console.log(this.count)
-          console.log(data) */
+           this.list = data.data.slice(this.pagesizeStart,this.pagesizeEnd)  //利用sclie 实现前端分页
+           this.count =  data.data.length;  
         });
     },
-    handleSizeChange(val) {
+/*     handleSizeChange(val) {
+      console.log(1111111111)
       this.nowpage = val;
       this.currentpage=1
-    },
-    handleCurrentChange(val) {
-        this.currentpage=val
-    },
-  /*   ChangePageNext() {
-      this.nowpage++;
-      this.getBlogData();
     }, */
+    handleCurrentChange(val) {
+        this.nowpage=val
+        /* 初始化 条数 */
+        this.pagesizeEnd=9
+        /* 把前端分页的参数 重新计算 */
+        this.pagesizeStart=this.pagesizeEnd*val-this.pagesizeEnd
+        this.pagesizeEnd=this.pagesizeEnd*val
+        this.getBlogData()
+    },
   },
 };
 </script>
@@ -103,7 +105,7 @@ export default {
     flex: 1;
     width: 30%;
     height: 350px;
-    margin: 15px;
+    margin: 20px;
     text-align: center;
     .index-tags {
       /*  margin-top: 15px; */
